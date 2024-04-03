@@ -334,11 +334,15 @@ UserOperation:
     factory:
       title: factory
       description: Address of the account factory, only for new accounts
-      $ref: '#/components/schemas/address'
+      oneOf:
+        - $ref: '#/components/schemas/address'
+        - type: 'null'
     factoryData:
       title: factoryData
       description: Data for the account factory, only if account factory is defined
-      $ref: '#/components/schemas/bytes'
+      oneOf:
+        - $ref: '#/components/schemas/bytes'
+        - type: 'null'
     callData:
       title: callData
       $ref: '#/components/schemas/bytes'
@@ -362,18 +366,27 @@ UserOperation:
     paymaster:
       title: paymaster address
       description: The address of the Paymaster that will be requested to pay the UserOperation gas fees
-      $ref: '#/components/schemas/address'
+      oneOf:
+        - $ref: '#/components/schemas/address'
+        - type: 'null'
     paymasterVerificationGasLimit:
       title: paymaster verification gas limit
       description: The amount of gas to allocate for the paymaster validation code
-      $ref: '#/components/schemas/uint'
+      oneOf:
+        - $ref: '#/components/schemas/uint'
+        - type: 'null'
     paymasterPostOpGasLimit:
       title: paymaster postOp gas limit
       description: The amount of gas to allocate for the paymaster post-operation code
-      $ref: '#/components/schemas/uint'
+      oneOf:
+        - $ref: '#/components/schemas/uint'
+        - type: 'null'
     paymasterData:
       title: paymaster data
-      $ref: '#/components/schemas/bytes'
+      description: Data for the paymaster, only if paymaster is defined
+      oneOf:
+        - $ref: '#/components/schemas/bytes'
+        - type: 'null'
     signature:
       title: signature
       $ref: '#/components/schemas/bytes'
